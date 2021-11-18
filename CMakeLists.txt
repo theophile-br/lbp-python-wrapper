@@ -8,4 +8,5 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(clbp clbp.cpp)
 target_link_libraries(clbp ${OpenCV_LIBS})
+file(COPY pylbp.py DESTINATION ${CMAKE_BINARY_DIR})
 

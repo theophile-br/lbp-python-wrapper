@@ -1,5 +1,6 @@
-import subprocess
 import os
+
+import pylbplib.pylbp as pylbp
 
 GRAYSCALE = "0"
 COLOR = "1"
@@ -16,11 +17,9 @@ for subdir, dirs, files in os.walk("images"):
         ################################################################################
         #######################     HERE IS THE PROGRAM CALL    ########################
         ################################################################################
-        proc = subprocess.Popen([clbp_program, img_path, COLOR], stdout=subprocess.PIPE)
-        img_hist = proc.stdout.readline()
-        img_hist = img_hist.decode("utf-8").split(",")
+
+        img_hist = pylbp.lbp_hist(img_path, pylbp.GRAYSCALE)
         ################################################################################
         f.write(','.join(str(x) for x in img_hist) + ":" + str(label_index) + "\n")
-        proc.wait()
 
 f.close()

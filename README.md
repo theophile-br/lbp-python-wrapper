@@ -1,7 +1,7 @@
 # Compile
 
 ```bash
-    cmake . && make
+    mkdir pylbplib && cd pylbplib && cmake .. && make
 ```
 
 # RUN
