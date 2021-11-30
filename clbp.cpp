@@ -50,21 +50,19 @@ void img_2_lbp_hist(Mat &img, float lbpHist[256]) {
 }
 
 int lbp_encode_pixel(Mat &img, int x, int y, int cn) {
-    uchar bits[8];
+    string bits;
     int center_pixel = img.at<Vec3b>(y, x).val[cn];
 
-    bits[0] = (center_pixel >= img.at<Vec3b>(y - 1, x - 1).val[cn]) ? 1 : 0;
-    bits[1] = (center_pixel >= img.at<Vec3b>(y - 1, x).val[cn]) ? 1 : 0;
-    bits[2] = (center_pixel >= img.at<Vec3b>(y - 1, x + 1).val[cn]) ? 1 : 0;
-    bits[3] = (center_pixel >= img.at<Vec3b>(y, x + 1).val[cn]) ? 1 : 0;
-    bits[4] = (center_pixel >= img.at<Vec3b>(y + 1, x + 1).val[cn]) ? 1 : 0;
-    bits[5] = (center_pixel >= img.at<Vec3b>(y + 1, x).val[cn]) ? 1 : 0;
-    bits[6] = (center_pixel >= img.at<Vec3b>(y + 1, x - 1).val[cn]) ? 1 : 0;
-    bits[7] = (center_pixel >= img.at<Vec3b>(y, x - 1).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y - 1, x - 1).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y - 1, x).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y - 1, x + 1).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y, x + 1).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y + 1, x + 1).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y + 1, x).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y + 1, x - 1).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y, x - 1).val[cn]) ? 1 : 0;
 
-    int decimal_value = 0;
-    for (int i = 0; i < 8; i++)
-        decimal_value += pow(2, i) * bits[i];
+    int decimal_value = stoi(bits, nullptr, 2);
     return decimal_value;
 }
 
