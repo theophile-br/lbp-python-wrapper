@@ -53,14 +53,14 @@ int lbp_encode_pixel(Mat &img, int x, int y, int cn) {
     string bits;
     int center_pixel = img.at<Vec3b>(y, x).val[cn];
 
-    bits += (center_pixel >= img.at<Vec3b>(y - 1, x - 1).val[cn]) ? 1 : 0;
-    bits += (center_pixel >= img.at<Vec3b>(y - 1, x).val[cn]) ? 1 : 0;
-    bits += (center_pixel >= img.at<Vec3b>(y - 1, x + 1).val[cn]) ? 1 : 0;
-    bits += (center_pixel >= img.at<Vec3b>(y, x + 1).val[cn]) ? 1 : 0;
-    bits += (center_pixel >= img.at<Vec3b>(y + 1, x + 1).val[cn]) ? 1 : 0;
-    bits += (center_pixel >= img.at<Vec3b>(y + 1, x).val[cn]) ? 1 : 0;
-    bits += (center_pixel >= img.at<Vec3b>(y + 1, x - 1).val[cn]) ? 1 : 0;
-    bits += (center_pixel >= img.at<Vec3b>(y, x - 1).val[cn]) ? 1 : 0;
+    bits += (center_pixel >= img.at<Vec3b>(y - 1, x - 1).val[cn]) ? '1' : '0';
+    bits += (center_pixel >= img.at<Vec3b>(y - 1, x).val[cn]) ? '1' : '0';
+    bits += (center_pixel >= img.at<Vec3b>(y - 1, x + 1).val[cn]) ? '1' : '0';
+    bits += (center_pixel >= img.at<Vec3b>(y, x + 1).val[cn]) ? '1' : '0';
+    bits += (center_pixel >= img.at<Vec3b>(y + 1, x + 1).val[cn]) ? '1' : '0';
+    bits += (center_pixel >= img.at<Vec3b>(y + 1, x).val[cn]) ? '1' : '0';
+    bits += (center_pixel >= img.at<Vec3b>(y + 1, x - 1).val[cn]) ? '1' : '0';
+    bits += (center_pixel >= img.at<Vec3b>(y, x - 1).val[cn]) ? '1' : '0';
 
     int decimal_value = stoi(bits, nullptr, 2);
     return decimal_value;
